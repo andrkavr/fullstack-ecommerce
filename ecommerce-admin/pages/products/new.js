@@ -1,17 +1,21 @@
 import Layout from "@/components/Layout";
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 
 export default function NewProduct() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
-  const createProduct = async (ev) => {
+  async function createProduct(ev) {
     ev.preventDefault();
     const data = { title, description, price };
-    await axios.post("/api/products", data);
-  };
+    try {
+      axios.post("/api/products", data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Layout>
