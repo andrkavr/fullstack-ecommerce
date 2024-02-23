@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+const { model, Schema, models } = require("mongoose");
 
 const ProductSchema = new Schema({
   title: String,
@@ -6,4 +6,5 @@ const ProductSchema = new Schema({
   price: Number,
 });
 
-export const Product = model("Product", ProductSchema);
+//Check if product exists, otherwise create new Product
+export const Product = models.Product || model("Product", ProductSchema);
